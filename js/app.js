@@ -2,7 +2,7 @@ class App {
   constructor() {
     this.headings = ["Name", "Phone", "Email"];
     this.keys = ["fullName", "phone", "email"];
-    this.url = "http://easycode-js.herokuapp.com/inesasushko/users";
+    this.url = "https://easycode-js.herokuapp.com/inesasushko/users";
   }
 
   header() {
