@@ -9,7 +9,7 @@ class AddUser {
 		    <nav class="user-top-line">
 			    <a href="user.html" class = "cancel">Cancel</a>
 				  <button class = "done-btn">Done</button>
-			   </nav>
+			  </nav>
 		  </div>
 	  </header>`;
   }
@@ -89,10 +89,10 @@ class AddUser {
 			  <div class="scroll-holder">
 				  <div class="edit-info">
             ${this.createEditInfo()}
-					</div>
-				</div>
-			</form>
-		</main>`;
+          </div>
+        </div>
+      </form>
+    </main>
   }
 
   //Функция отправки запроса на сервер
