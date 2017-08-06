@@ -5,89 +5,92 @@ class AddUser {
 
   header() {
     return `<header class="header">
-		  <div class="container top-radius">
-		    <nav class="user-top-line">
-			    <a href="user.html" class = "cancel">Cancel</a>
-				  <button class = "done-btn">Done</button>
-			  </nav>
-		  </div>
-	  </header>`;
+      <div class="container top-radius">
+        <nav class="user-top-line">
+          <a href="user.html" class = "cancel">Cancel</a>
+          <button class = "done-btn">Done</button>
+        </nav>
+      </div>
+    </header>`;
   }
 
   createMainInfoHolder() {
     return `<div class="edit-field">
-			<span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-				<input type = "text" placeholder="First Name"></input>
-			</span>
-		</div>
-		<div class="edit-field">
-			<span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-		  	<input type = "text" placeholder="Last Name"></input>
-		  </span>
-		</div>
-		<div class="edit-field">
-			<span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-				<input type = "text" placeholder="Company"></input>
-			</span>
-		</div>`;
+      <span href="#" class="add-btn">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="First Name"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="Last Name"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="Company"></input>
+      </span>
+    </div>`;
   }
 
   createEditInfo() {
     return `<div class="edit-field">
-			<span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-		  	<input type = "text" placeholder="add mobile phone"></input>
-			</span>
-		</div>
-		<div class="edit-field">
-			<span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-				<input type = "text" placeholder="add home phone"></input>
-			</span>
-		</div>
-		<div class="edit-field">
-			<span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-				<input type = "text" placeholder="add email"></input>
-			</span>
-		</div>
-		<div class="edit-field">
-			<span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-				<input type = "text" placeholder="add address"></input>
-			</span>
-		</div>
-		<div class="edit-field">
-			<span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-				<input type = "text" placeholder="add birthaday"></input>
-			</span>
-		</div>
-		<div class="edit-field">
-		  <span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-				<input type = "text" placeholder="add social profile"></input>
-			</span>
-		</div>
-		<div class="edit-field">
-			<span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-				<input type = "text" placeholder="add field"></input>
-			</span>
-		</div>
-		<div class="edit-field">
+      <span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="add mobile phone"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="add home phone"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="add email"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="add address"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="add birthaday"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="add social profile"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="add field"></input>
+      </span>
+    </div>
+    <div class="edit-field">
       <span href="#" class="delete-contact">delete contact</span>
-		</div>`;
+    </div>`;
   }
 
   main() {
     return `<main class="main">
-		  <form class="container">
-		    <div class="edit-main-info">
-		      <div class="edit-foto">
+      <form class="container">
+        <div class = "edit-main-info">
+          <div class = "edit-foto">
             <button class="add-foto-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-		          <span>add foto</span>
+              <span>add foto</span>
             </button>
-					</div>
-					<div class="main-info-holder">
+          </div>
+          <div class="main-info-holder">
             ${this.createMainInfoHolder()}
           </div>
-			  </div>
-			  <div class="scroll-holder">
-				  <div class="edit-info">
+        </div>
+        <div class="scroll-holder">
+          <div class = "edit-info">
             ${this.createEditInfo()}
           </div>
         </div>
@@ -131,8 +134,8 @@ class AddUser {
     });
 
     cancelBtn.addEventListener('click', e =>{
-			e.preventDefault()
-			new Contacts(this.state).render()
+      e.preventDefault();
+      new Contacts(this.state).render()
 		})
   }
 
@@ -142,5 +145,3 @@ class AddUser {
     this.events();
   }
 }
-
-
