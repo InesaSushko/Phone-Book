@@ -134,8 +134,8 @@ class AddUser {
     });
 
     cancelBtn.addEventListener('click', e =>{
-			e.preventDefault()
-			new Contacts(this.state).render()
+      e.preventDefault();
+      new Contacts(this.state).render()
 		})
   }
 
