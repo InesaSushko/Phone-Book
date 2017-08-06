@@ -1,6 +1,6 @@
 class User {
   constructor(appState) {
-    this.state = appState
+    this.state = appState;
   }
 
   header() {
@@ -16,7 +16,7 @@ class User {
   }
 
   createFields() {
-    return  `<div class="message">
+    return `<div class="message">
 			<div class= "options-icon">
 				<span class="icon glyphicon glyphicon-comment" aria-hidden="true"></span>
 			</div>
@@ -39,7 +39,7 @@ class User {
 				<span class="icon glyphicon glyphicon-envelope" aria-hidden="true"></span>
 			</div>
 			<span class = "options-text">mail</span>
-		</div>`
+		</div>`;
   }
 
   createOptions() {
@@ -48,12 +48,13 @@ class User {
 			<div class ="options-item"><a href="#">Share contact</a></div>
 			<div class ="options-item"><a href="#">Add to favorites</a></div>
 			<div class ="options-item"><a href="#">Share my location</a></div>
-			<div class ="options-item"><a href="#">Block this caller</a></div>`
+			<div class ="options-item"><a href="#">Block this caller</a></div>`;
   }
 
   main() {
     return `<div class="container"><img src="images/user-face.png" alt="#" class=" user-img img-circle center-block">
-			<div class="user-name">${this.state.locals.firstName} ${this.state.locals.lastName}</div>
+			<div class="user-name">${this.state.locals.firstName} ${this.state.locals
+      .lastName}</div>
 			<div class="options-line">
 				${this.createFields()}
 			</div>
@@ -63,27 +64,24 @@ class User {
 		<div class="options-table">${this.createOptions()}</div></div>`;
   }
 
-	events() {
-		const editButton = document.querySelector('.edit');
-		const contactsButton = document.querySelector('.contacts') 
+  events() {
+    const editButton = document.querySelector(".edit");
+    const contactsButton = document.querySelector(".contacts");
 
-		editButton.addEventListener('click', e =>{
-			e.preventDefault()
-			new EditContact(this.state).render()
-		})
+    editButton.addEventListener("click", e => {
+      e.preventDefault();
+      new EditContact(this.state).render();
+    });
 
-		contactsButton.addEventListener('click', e =>{
-			e.preventDefault()
-			new Contacts(this.state).render()
-		})
-	}
+    contactsButton.addEventListener("click", e => {
+      e.preventDefault();
+      new Contacts(this.state).render();
+    });
+  }
 
   render() {
     const mainDiv = document.querySelector(".phone-book");
     mainDiv.innerHTML = this.header() + this.main();
-		this.events();
+    this.events();
   }
 }
-
-
-
