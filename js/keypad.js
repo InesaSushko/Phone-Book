@@ -14,11 +14,11 @@ class KeyPad {
   main() {
     return `<main class="main">
       <div class="container">
-		    <div class="number">
-		      <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
-		      <span class ="numbers">${this.state.locals.forms.number}</span>
-		      <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
-		    </div>
+        <div class="number">
+          <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+          <span class ="numbers">${this.state.locals.forms.number}</span>
+          <span class="glyphicon glyphicon-circle-arrow-left" aria-hidden="true"></span>
+        </div>
         <div class="keypad-holder">
           <button class="key">1</button>
           <button class="key">2</button>
@@ -32,9 +32,12 @@ class KeyPad {
 		  		<button class="key">*</button>
 		  		<button class="key">0</button>
 		  		<button class="key">#</button>
-		  		<button class="key"> <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span></button>
+          <button class="key"> 
+            <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+          </button>
         </div>
-      </main>`;   
+      </div>
+    </main>`;   
   }
 
 //formating number
