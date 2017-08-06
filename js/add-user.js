@@ -92,7 +92,7 @@ class AddUser {
           </div>
         </div>
       </form>
-    </main>
+    </main>`
   }
 
   //Функция отправки запроса на сервер
