@@ -5,10 +5,10 @@ class KeyPad {
 
   header() {
     return `<header class="header">
-		  <div class="container top-radius">
-		    <h2>Keypad</h2>
-		  </div>
-	  </header>`;
+      <div class="container top-radius">
+        <h2>Keypad</h2>
+      </div>
+    </header>`;
   }
 
   main() {
