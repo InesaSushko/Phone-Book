@@ -1,88 +1,151 @@
-class User {
+class AddUser {
   constructor(appState) {
     this.state = appState
   }
 
   header() {
     return `<header class="header">
-			<div class="container top-radius">
-				<div class="user-top-line">
-					<a href="index.html" class = "contacts">
-						<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>Contacts</a>
-					<a href="edit-contact.html" class = "edit">Edit</a>
-				</div>
-			</div>
-		</header>`;
+      <div class="container top-radius">
+        <nav class="user-top-line">
+          <a href="user.html" class = "cancel">Cancel</a>
+          <button class = "done-btn">Done</button>
+        </nav>
+      </div>
+    </header>`;
   }
 
-  createFields() {
-    return  `<div class="message">
-			<div class= "options-icon">
-				<span class="icon glyphicon glyphicon-comment" aria-hidden="true"></span>
-			</div>
-			<span class = "options-text">message</span>
-		</div>
-		<div class="call">
-			<div class= "options-icon">
-				<span class="icon glyphicon glyphicon-earphone" aria-hidden="true"></span>
-			</div>
-			<span class = "options-text">call</span>
-		</div>
-		<div class="video">
-			<div class= "options-icon">
-				<span class="icon glyphicon glyphicon-facetime-video" aria-hidden="true"></span>
-			</div>
-			<span class = "options-text">video</span>
-		</div>
-		<div class="mail">
-			<div class= "options-icon">
-				<span class="icon glyphicon glyphicon-envelope" aria-hidden="true"></span>
-			</div>
-			<span class = "options-text">mail</span>
-		</div>`
+  createMainInfoHolder() {
+    return `<div class="edit-field">
+      <span href="#" class="add-btn">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="First Name"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="Last Name"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn">
+        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="Company"></input>
+      </span>
+    </div>`;
   }
 
-  createOptions() {
-    return `<div class ="options-item"><a href="#">Notes</a></div>
-			<div class ="options-item"><a href="#">Send message</a></div>
-			<div class ="options-item"><a href="#">Share contact</a></div>
-			<div class ="options-item"><a href="#">Add to favorites</a></div>
-			<div class ="options-item"><a href="#">Share my location</a></div>
-			<div class ="options-item"><a href="#">Block this caller</a></div>`
+  createEditInfo() {
+    return `<div class="edit-field">
+      <span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="add mobile phone"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="add home phone"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="add email"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="add address"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="add birthaday"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="add social profile"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="add-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+        <input type = "text" placeholder="add field"></input>
+      </span>
+    </div>
+    <div class="edit-field">
+      <span href="#" class="delete-contact">delete contact</span>
+    </div>`;
   }
 
   main() {
-    return `<div class="container"><img src="images/user-face.png" alt="#" class=" user-img img-circle center-block">
-			<div class="user-name">${this.state.locals.firstName} ${this.state.locals.lastName}</div>
-			<div class="options-line">
-				${this.createFields()}
-			</div>
-			<div class="tel-number"><h3>mobile</h3><div>
-			${this.state.locals.number}
-		</div>
-		<div class="options-table">${this.createOptions()}</div></div>`;
+    return `<main class="main">
+      <form class="container">
+        <div class = "edit-main-info">
+          <div class = "edit-foto">
+            <button class="add-foto-btn"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span>
+              <span>add foto</span>
+            </button>
+          </div>
+          <div class="main-info-holder">
+            ${this.createMainInfoHolder()}
+          </div>
+        </div>
+        <div class="scroll-holder">
+          <div class = "edit-info">
+            ${this.createEditInfo()}
+          </div>
+        </div>
+      </form>
+    </main>`
   }
 
-	events() {
-		const editButton = document.querySelector('.edit');
-		const contactsButton = document.querySelector('.contacts') 
+  //Функция отправки запроса на сервер
+  serverRequest(user) {
+    api.postRequest(user)
+  }
 
-		editButton.addEventListener('click', e =>{
-			e.preventDefault()
-			new EditContact(this.state).render()
-		})
+  //Функция проверки правильности номера
+  checkIfNumber(num) {
+    return !isNaN(num) && num.length === 10 ? true : false;
+  }
 
-		contactsButton.addEventListener('click', e =>{
-			e.preventDefault()
-			new Contacts(this.state).render()
+  //Функция сохранения пользователя
+  events() {
+    const saveUser = document.querySelector(".done-btn");
+    const cancelBtn = document.querySelector('.cancel');
+
+    saveUser.addEventListener("click", e => {
+      const inputs = [...document.querySelectorAll("input")];
+      let user = {
+        fullName: `${inputs[0].value} ${inputs[1].value}`,
+        phone: inputs[3].value,
+        email: inputs[5].value
+      };
+      if (!user.fullName) {
+        return alert("Add username");
+      }
+      if (!user.phone || !this.checkIfNumber(user.phone)) {
+        return alert("Add correct number");
+      }
+      if (!user.email) {
+        return alert("Add email");
+      }
+
+      this.serverRequest(user);
+    });
+
+    cancelBtn.addEventListener('click', e =>{
+      e.preventDefault();
+      new Contacts(this.state).render()
 		})
-	}
+  }
 
   render() {
     const mainDiv = document.querySelector(".phone-book");
     mainDiv.innerHTML = this.header() + this.main();
-		this.events();
+    this.events();
   }
 }
+
+
 
 
