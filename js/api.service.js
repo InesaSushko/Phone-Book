@@ -23,4 +23,4 @@ class Api {
   }
 }
 
-const api = new Api(`http://easycode-js.herokuapp.com/inesasushko/users`);
+const api = new Api(`https://easycode-js.herokuapp.com/inesasushko/users`);
