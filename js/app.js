@@ -1,3 +1,4 @@
+
 class Contacts {
   constructor(appState) {
     this.state = appState;
