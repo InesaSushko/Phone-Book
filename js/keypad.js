@@ -5,11 +5,10 @@ class KeyPad {
 
   header() {
     return `<header class="header">
-		  <div class="container top-radius">
-		    <h2>Keypad</h2>
-		  </div>
-	  </header>`;
-  }
+      <div class="container top-radius">
+        <h2>Keypad</h2>
+      </div>
+    </header>`;}
 
   main() {
     return `<main class="main">
@@ -27,11 +26,11 @@ class KeyPad {
           <button class="key">5</button>
           <button class="key">6</button>
           <button class="key">7</button>
-		  		<button class="key">8</button>
-		  		<button class="key">9</button>
-		  		<button class="key">*</button>
-		  		<button class="key">0</button>
-		  		<button class="key">#</button>
+          <button class="key">8</button>
+          <button class="key">9</button>
+          <button class="key">*</button>
+          <button class="key">0</button>
+          <button class="key">#</button>
           <button class="key"> 
             <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
           </button>
