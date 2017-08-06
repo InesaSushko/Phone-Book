@@ -6,20 +6,18 @@ class Contacts {
 
   header() {
     return `<header class="header">
-		  <div class="container top-radius">
-			  <h2>Contacts</h2>
-		  </div>
-	  </header>`;
-  }
+      <div class="container top-radius">
+        <h2>Contacts</h2>
+      </div>
+    </header>`;}
 
   createForm() {
     return `<form class="form-inline search-form">
-    <div class="form-group">
-    <label class="sr-only" for="search">Search</label>
-		<input type="text" class="form-control" id= "search" placeholder="Search" value = "${this.state.locals.forms.contact}">
-		</div>
-    </form>`;
-  }
+      <div class="form-group">
+        <label class="sr-only" for="search">Search</label>
+        <input type="text" class="form-control" id= "search" placeholder="Search" value = "${this.state.locals.forms.contact}">
+      </div>
+    </form>`;}
 
   createContacts() {
     return this.state.db.users
@@ -38,20 +36,20 @@ class Contacts {
   }
 
   main() {
-    return `<main>
-		  <div class="container">
-        ${this.createForm()}
+    return `<main><div class="container">
+      ${this.createForm()}
         <table class="table table-hover contacts">
-        <thead>
-				<tr><th>Name</th><th>Last name</th><th>Phone</th></tr>
-				</thead>
+          <thead>
+            <tr><th>Name</th>
+            <th>Last name</th>
+            <th>Phone</th></tr>
+          </thead>
         <tbody>
-        ${this.createContacts()}
+          ${this.createContacts()}
         </tbody>
-        </table>
-		  </div>
-	  </main>`;
-  }
+      </table>
+    </div>
+  </main>`;}
 
   //filetr users
   filter(keys) {
