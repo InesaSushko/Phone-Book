@@ -1,125 +1,130 @@
-class App {
-  constructor() {
-    this.headings = ["Name", "Phone", "Email"];
-    this.keys = ["fullName", "phone", "email"];
-    this.url = "https://easycode-js.herokuapp.com/inesasushko/users";
+class Contacts {
+  constructor(appState) {
+    this.state = appState
   }
 
   header() {
-    const header = `<header class="header">
-		                  <div class="container top-radius">
-			                  <h2>Contacts</h2>
-		                  </div>
-	                  </header>`;
-    return header;
+    return `<header class="header">
+		  <div class="container top-radius">
+			  <h2>Contacts</h2>
+		  </div>
+	  </header>`;
   }
 
   createForm() {
-    const form = `<form class="form-inline search-form">
-				            <div class="form-group">
-					            <label class="sr-only" for="search">Search</label>
-					            <input type="text" class="form-control" id= "search" placeholder="Search">
-				            </div>
-			            </form>`;
-    return form;
+    return `<form class="form-inline search-form">
+			<div class="form-group">
+				<label class="sr-only" for="search">Search</label>
+				<input type="text" class="form-control" id= "search" placeholder="Search" value = "${this.state.locals.forms.contact}">
+			</div>
+    </form>`;
   }
 
-  createContacts(contact) {
-    let tags = ``;
-    this.keys.forEach(key => {
-      tags += `<td>${contact[key]}</td>`;
-    });
-    return tags;
-  }
-
-  createTable() {
-    let table = `<table class="table table-hover contacts"><thead>`;
-    table += this.headings.map(header => `<th>${header}</th>`).join("");
-    table += `<tbody>`;
-    table += this.users
-      .map(contact => `<tr>` + this.createContacts(contact) + `</tr>`)
+  createContacts() {
+    return this.state.db.users.map(e => {
+        let phone = `(${e.phone.slice(0,3)}) ${e.phone.slice(3,6)}-${e.phone.slice(6,8)}-${e.phone.slice(8)}`
+        return `<tr>
+          <td>${e.fullName.split(" ")[0]}</td>
+          <td>${e.fullName.split(" ")[1]}</td>
+          <td>${phone}</td>
+        </tr>`;
+      })
       .join("");
-    table += `</tbody></table>`;
-    table += `</div></main>`;
-    return table;
   }
 
   main() {
-    let mainHTML = `<main><div class="container">`;
-    mainHTML += this.createForm();
-    mainHTML += this.createTable();
-
-    return mainHTML;
+    return `<main>
+		  <div class="container">
+        ${this.createForm()}
+        <table class="table table-hover contacts">
+          <thead>
+					  <tr>
+						  <th>Name</th>
+              <th>Last name</th>
+						  <th>Phone</th>
+					  </tr>
+				  </thead>
+          <tbody>
+            ${this.createContacts()}
+          </tbody>
+        </table>
+		  </div>
+	  </main>`;
   }
 
-  filterEvent() {
-    const search = document.querySelector("#search");
-    search.addEventListener("keydown", e => {
-      this.filterFN(search, e);
+  //filetr users
+  filter( keys) {
+    const users = [...document.getElementsByTagName("tr")].slice(1);   
+    users.forEach(user => {
+      let eachName = user.children[0].textContent.toLowerCase();
+      return eachName.includes(keys.toLowerCase())
+        ? (user.style.display = "table")
+        : (user.style.display = "none");
     });
+    phoneBook.state.locals.forms.contact = keys;
   }
 
-  filterFN(input, e) {
-    const raws = [...document.getElementsByTagName("tr")].slice(1);
-    let param;
-    let value = input.value;
-    e.key === "Backspace"
-      ? (param = value.slice(0, value.length - 1))
-      : (param = value + e.key);
-    raws.forEach(elem => {
-      let eachName = elem.children[0].textContent.toLowerCase();
-      return eachName.includes(param.toLowerCase())
-        ? (elem.style.display = "table")
-        : (elem.style.display = "none");
-    });
-  }
-
-  sortingEvent() {
-    const thead = document.querySelector("thead");
-    const th = [...document.querySelectorAll("th")];
-    thead.addEventListener("click", e => {
-      if (e.target.tagName === "TH") {
-        let index = th.indexOf(e.target);
-        this.sortingFN(index);
-      }
-    });
-  }
-
-  sortingFN(index) {
-    const raws = [...document.getElementsByTagName("tr")].slice(1);
-    let newRaws = raws
-      .sort((a, b) => {
-        const raws = [...document.getElementsByTagName("tr")].slice(1);
-        let prev = [...a.querySelectorAll("td")][index].textContent;
-        let next = [...b.querySelectorAll("td")][index].textContent;
+  //sorting
+  sorting(users, sortParam) {
+    let sortedUsers = users.sort((a, b) => {
+        let prev = a.children[sortParam].textContent;
+        let next = b.children[sortParam].textContent;
         return prev > next ? 1 : -1;
       })
       .map(elem => elem.outerHTML)
       .join("");
     const tbody = document.querySelector("tbody");
-    tbody.innerHTML = newRaws;
+    tbody.innerHTML = sortedUsers;
   }
 
-  serverRequest() {
-    let xhr = new XMLHttpRequest();
-    xhr.open('GET', this.url, true);
-    xhr.send();
-    xhr.addEventListener("readystatechange", () => {
-      if (xhr.readyState === 4) {
-        this.users = (JSON.parse(xhr.responseText));
-        this.render();
+  events() {
+    const search = document.querySelector("#search");
+    const thead = document.querySelector("thead");
+    const users = [...document.getElementsByTagName("tr")].slice(1);
+    const th = ['Name', 'Last name', 'Phone'];
+    const tbody = document.querySelector('tbody')
+
+    search.addEventListener("keydown", e => {
+      let keys = search.value;
+      e.key === "Backspace"
+        ? this.filter( keys.slice(0, keys.length - 1))
+        : this.filter( keys + e.key);
+    });
+
+    thead.addEventListener("click", e => {
+      if (e.target.tagName === "TH") {
+        let sortParam = th.indexOf(e.target.textContent);
+        this.sorting(users, sortParam);
       }
     });
+ 
+    //saving contact to locals and make users a links to page 'User'
+    tbody.addEventListener('click', e =>{
+        if(e.target.tagName === 'TD' ){
+          let raw = e.target.parentElement;
+          this.state.locals.firstName = `${raw.children[0].textContent}` 
+          this.state.locals.lastName = `${raw.children[1].textContent}`;
+          this.state.locals.number = `${raw.children[2].textContent}`
+        }
+        new User(this.state).render()
+    })
+
+  
+  }
+
+  renderHTML() {
+    const mainDiv = document.querySelector(".phone-book");
+    mainDiv.innerHTML = this.header() + this.main();
+    this.events();
   }
 
   render() {
-    const mainDiv = document.createElement("div");
-    mainDiv.innerHTML = this.header() + this.main();
-    document.body.prepend(mainDiv);
-    this.sortingEvent();
-    this.filterEvent();
+    api.requestUsers().then(data => {
+      phoneBook.state.db.users = data;
+      this.renderHTML();
+    });
   }
 }
 
-let phoneBook = new App();
-phoneBook.serverRequest();
+
+
